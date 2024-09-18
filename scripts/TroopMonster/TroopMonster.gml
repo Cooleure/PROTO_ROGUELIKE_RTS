@@ -1,7 +1,7 @@
 function TroopMonster()
 {
 	/// INIT
-	generateTroop(oMonster, oMonster);
+	generateTroop(oMonster, "Monsters", oMonster, "Monsters");
 
 	/// EVENTS
 	function leftPressed()

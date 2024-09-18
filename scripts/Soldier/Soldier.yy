@@ -6,7 +6,7 @@
   "name":"Soldier",
   "parent":{
     "name":"Soldiers",
-    "path":"folders/Troop/Soldiers.yy",
+    "path":"folders/Soldiers.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

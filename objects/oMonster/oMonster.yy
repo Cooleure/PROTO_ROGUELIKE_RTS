@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Monsters",
-    "path":"folders/Troop/Monsters.yy",
+    "path":"folders/Monsters.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -32,7 +32,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sBatIdle",
+    "path":"sprites/sBatIdle/sBatIdle.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

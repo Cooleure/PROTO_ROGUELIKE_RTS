@@ -21,6 +21,6 @@ function Leader()
 	{
 		draw_self();
 		
-		draw_text(x, y, moveToPoint);
+		//draw_text(x, y, moveToPoint);
 	}
 }

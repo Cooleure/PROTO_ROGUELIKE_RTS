@@ -7,12 +7,14 @@ enum SOLDIER_STATE
 {
 	IDLE,
 	LATENCY,
-	MOVE
+	MOVE,
+	FIGHT
 }
 
 function Soldier()
 {
 	/// INIT
+	
 	// Appareance
 	spriteIdle = sSoldierIdle;
 	spriteWalk = sSoldierWalk;
@@ -30,12 +32,21 @@ function Soldier()
 	currentMoveSpeed = 0;
 	
 	// Id
+	troop = undefined;
+	targetMonster = undefined;
 	no = undefined;
+	
+	// Weapon
+	weapon = instance_create_layer(x, y, "Weapons", oWeapon);
+	weapon.unit = id;
 	
 	// State Machine
 	function idle()
 	{
-		
+		if (troop.fightDetected)
+		{
+			stateMachineSoldier.setState(SOLDIER_STATE.FIGHT);
+		}
 	}
 	
 	function latency()
@@ -76,10 +87,19 @@ function Soldier()
 		}
 	}
 	
+	function fight()
+	{
+		if (not troop.fightDetected)
+		{
+			stateMachineSoldier.setState(SOLDIER_STATE.IDLE);
+		}
+	}
+	
 	stateMachineSoldier = new StateMachine(SOLDIER_STATE.IDLE,
 		idle,
 		latency,
-		move
+		move,
+		fight
 	);
 
 	/// EVENTS
@@ -102,7 +122,7 @@ function Soldier()
 		draw_self();
 		
 		draw_set_color(c_white);
-		draw_text(x, y, no);
+		//draw_text(x, y, stateMachineSoldier.getState());
 	}
 	
 	// Public functions

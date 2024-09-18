@@ -1,17 +1,13 @@
 {
   "$GMScript":"v1",
-  "%Name":"Monster",
+  "%Name":"Weapon",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"Monster",
+  "name":"Weapon",
   "parent":{
-    "name":"Monsters",
-    "path":"folders/Monsters.yy",
+    "name":"Weapons",
+    "path":"folders/Weapons.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
-  "tags":[
-    "Tag1",
-    "Tag3",
-  ],
 }

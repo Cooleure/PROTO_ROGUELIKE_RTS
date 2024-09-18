@@ -19,7 +19,7 @@ function Troop()
 	
 	leader = undefined;
 	
-	function generateTroop(_leader, _follower)
+	function generateTroop(_leader, _leaderLayer, _follower, _followerLayer)
 	{
 		var _no = 0;
 	
@@ -36,14 +36,14 @@ function Troop()
 		
 			if (i == centerX and j == centerY)
 			{
-				_soldier = instance_create_layer(0, 0, "Soldiers", _leader);
+				_soldier = instance_create_layer(0, 0, _leaderLayer, _leader);
 			}
 			else
 			{
-				_soldier = instance_create_layer(0, 0, "Soldiers", _follower);
+				_soldier = instance_create_layer(0, 0, _followerLayer, _follower);
 			}
 		
-			
+			_soldier.troop = id;
 			_soldier.no = _no;
 			_no++;
 			

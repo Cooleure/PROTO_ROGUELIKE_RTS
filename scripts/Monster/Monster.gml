@@ -102,7 +102,7 @@ function Monster()
 		draw_self();
 		
 		draw_set_color(c_white);
-		draw_text(x, y, no);
+		//draw_text(x, y, no);
 	}
 	
 	// Public functions
