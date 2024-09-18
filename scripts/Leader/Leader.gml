@@ -6,19 +6,21 @@
 function Leader()
 {
 	/// INIT
-	stateMachineExample = new StateMachine(SM_MODEL_STATE.FIRST_STATE,
-										StateObjectStateFirstState,
-										StateObjectStateSecondState,
-										StateObjectStateThirdState);
+	// Appareance
+	spriteIdle = sLeaderIddle;
+	spriteWalk = sLeaderWalk;
+	sprite_index = spriteIdle;
 
 	/// EVENTS
-	function step()
+	function stepLeader()
 	{
-		script_execute(stateMachineExample.update());
+		
 	}
 
 	function draw()
 	{
+		draw_self();
 		
+		draw_text(x, y, moveToPoint);
 	}
 }

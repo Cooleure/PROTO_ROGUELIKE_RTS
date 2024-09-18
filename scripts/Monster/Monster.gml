@@ -3,19 +3,19 @@
 ///////// EVENT CLASS /////////
 ///////////////////////////////
 
-enum SOLDIER_STATE
+enum MONSTER_STATE
 {
 	IDLE,
 	LATENCY,
 	MOVE
 }
 
-function Soldier()
+function Monster()
 {
 	/// INIT
 	// Appareance
-	spriteIdle = sSoldierIddle;
-	spriteWalk = sSoldierWalk;
+	spriteIdle = sMonstreIdle;
+	spriteWalk = sMonstreWalk;
 	sprite_index = spriteIdle;
 	image_xscale = 3;
 	image_yscale = 3;

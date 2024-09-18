@@ -7,6 +7,7 @@ function Control()
 {
 	/// INIT
 	show_debug_log(true);
+	randomize();
 	
 	stateMachineExample = new StateMachine(SM_MODEL_STATE.FIRST_STATE,
 										StateObjectStateFirstState,

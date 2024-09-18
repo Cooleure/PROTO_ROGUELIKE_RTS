@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"Leader",
   "parent":{
-    "name":"Leader",
-    "path":"folders/Troop/Leader.yy",
+    "name":"Leaders",
+    "path":"folders/Troop/Soldiers/Leaders.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

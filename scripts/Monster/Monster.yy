@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"Soldier",
+  "%Name":"Monster",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"Soldier",
+  "name":"Monster",
   "parent":{
-    "name":"Soldiers",
-    "path":"folders/Troop/Soldiers.yy",
+    "name":"Monsters",
+    "path":"folders/Troop/Monsters.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

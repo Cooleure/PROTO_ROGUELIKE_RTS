@@ -1,22 +1,20 @@
 {
   "$GMObject":"",
-  "%Name":"oLeader",
+  "%Name":"oMonster",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"oLeader",
+  "name":"oMonster",
   "overriddenProperties":[],
   "parent":{
-    "name":"Leaders",
-    "path":"folders/Troop/Soldiers/Leaders.yy",
+    "name":"Monsters",
+    "path":"folders/Troop/Monsters.yy",
   },
-  "parentObjectId":{
-    "name":"oSoldier",
-    "path":"objects/oSoldier/oSoldier.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

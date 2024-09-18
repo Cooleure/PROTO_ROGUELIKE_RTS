@@ -1,21 +1,19 @@
 {
   "$GMObject":"",
-  "%Name":"oLeader",
+  "%Name":"oTroopSoldier",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"oLeader",
+  "name":"oTroopSoldier",
   "overriddenProperties":[],
   "parent":{
-    "name":"Leaders",
-    "path":"folders/Troop/Soldiers/Leaders.yy",
+    "name":"Troop",
+    "path":"folders/Troop.yy",
   },
   "parentObjectId":{
-    "name":"oSoldier",
-    "path":"objects/oSoldier/oSoldier.yy",
+    "name":"oTroop",
+    "path":"objects/oTroop/oTroop.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -34,7 +32,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sPixel",
+    "path":"sprites/sPixel/sPixel.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }
