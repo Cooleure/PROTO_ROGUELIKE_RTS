@@ -14,8 +14,8 @@ function Monster()
 {
 	/// INIT
 	// Appareance
-	spriteIdle = sMonstreIdle;
-	spriteWalk = sMonstreWalk;
+	spriteIdle = sBatIdle;
+	spriteWalk = sBatWalk;
 	sprite_index = spriteIdle;
 	image_xscale = 3;
 	image_yscale = 3;

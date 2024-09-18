@@ -7,7 +7,7 @@ function Leader()
 {
 	/// INIT
 	// Appareance
-	spriteIdle = sLeaderIddle;
+	spriteIdle = sLeaderIdle;
 	spriteWalk = sLeaderWalk;
 	sprite_index = spriteIdle;
 

@@ -14,7 +14,7 @@ function Soldier()
 {
 	/// INIT
 	// Appareance
-	spriteIdle = sSoldierIddle;
+	spriteIdle = sSoldierIdle;
 	spriteWalk = sSoldierWalk;
 	sprite_index = spriteIdle;
 	image_xscale = 3;
