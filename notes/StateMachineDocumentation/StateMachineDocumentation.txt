@@ -1,0 +1,55 @@
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+															STATE MACHINE
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+///// DESCRIPTIF /////
+
+Ce module facilite la mise en place d'un state machine.
+
+CONTENU DU MODULE :
+- Le script StateMachine contient le code relatif au state machine.
+- Le script StateMachineStatesEnum comprend un modèle de classe vide à compléter et modifier pour faciliter la mise en route.
+- Le script SMStates contient une énumération avec les états du modèle.
+- Le script SMModelStateFunctions comprend les fonctions à jouer dans le state machine.
+- Le fichier oSMModel est un modèle d'objet prêt à fonctionner en state machine. Il fonctionne avec le script SM_Model.
+
+MISE EN ROUTE :
+- Créer deux événements dans un objet : Create et Step
+- Utiliser le constructeur StateMachine() dans l'événement Create pour mettre en place le state machine.
+- Utiliser la fonction update() dans l'événement Step pour calculer la fonction à exécuter en fonction de l'état donné.
+- Utiliser les Setters/Getters pour vérifier l'état de l'objet à tout moment.
+
+L'initialisation permet de déclarer l'état initial du système, et un varargs de fonctions, chacune propre à un état de l'objet.
+A chaque image, le state machine vérifie l'état de l'objet et renvoie la fonction propre à cet état.
+C'est une sorte d'aiguilleur vers la bonne fonction.
+L'objet change donc de comportement de manière naturelle. Ce système permet d'éviter de nombreuses conditions et variables inutiles.
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+///// LISTE DES FONCTIONS /////
+
+// brief									Constructeur
+// param	(int)		firstState			Etat initial du state machine
+// param	(function)	stateFunction		Les fonctions liées au state machine (varargs)
+StateMachine(firstState, stateFunction...)
+
+// brief									Calcule la fonction a appliquer en fonction de l'état courant
+// return	(function)						La fonction à exécuter
+update()
+
+// brief									Récupère l'état
+// return	(int)							L'état
+getState(object)
+
+// brief									Définit l'état à la valeur donnée en paramètre
+// param	(int)		state				La nouvelle valeur de l'état
+setState(state)
+
+// brief									Vérifie la valeur de l'état
+// param	(int)		state				L'état à comparer
+// return	(boolean)						True si l'état correspond à celui donné en paramètre, false sinon
+isState(state)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯

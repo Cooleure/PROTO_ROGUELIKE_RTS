@@ -1,0 +1,17 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Soldier",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Soldier",
+  "parent":{
+    "name":"Soldier",
+    "path":"folders/Troop/Soldier.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+  "tags":[
+    "Tag1",
+    "Tag3",
+  ],
+}

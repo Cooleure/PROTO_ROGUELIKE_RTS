@@ -1,0 +1,11 @@
+///////////////////////////////
+///// STATE MACHINE MODEL /////
+///////// STATE ENUM //////////
+///////////////////////////////
+
+enum SM_MODEL_STATE
+{
+	FIRST_STATE,
+	SECOND_STATE,
+	THIRD_STATE,
+}

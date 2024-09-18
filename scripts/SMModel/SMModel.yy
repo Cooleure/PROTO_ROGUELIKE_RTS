@@ -1,0 +1,17 @@
+{
+  "$GMScript":"v1",
+  "%Name":"SMModel",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"SMModel",
+  "parent":{
+    "name":"StateMachine",
+    "path":"folders/StateMachine.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+  "tags":[
+    "Tag1",
+    "Tag3",
+  ],
+}

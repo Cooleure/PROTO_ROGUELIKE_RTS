@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"SMModelStateFunctions",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"SMModelStateFunctions",
+  "parent":{
+    "name":"StateMachine",
+    "path":"folders/StateMachine.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
