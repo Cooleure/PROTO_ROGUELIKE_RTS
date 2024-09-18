@@ -19,6 +19,7 @@
   "name":"PROTO_ROGUELIKE_RTS",
   "resources":[
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"sTest","path":"sprites/sTest/sTest.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
