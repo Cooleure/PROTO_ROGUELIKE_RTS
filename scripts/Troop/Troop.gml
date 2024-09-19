@@ -76,10 +76,41 @@ function Troop()
 	
 	function endStep()
 	{
-		if (not is_undefined(leader))
+		if (not is_undefined(leader) and instance_exists(leader))
 		{
 			x = leader.x;
 			y = leader.y;
 		}
+		
+		if (troopIsDead())
+		{
+			ds_list_destroy(soldiersList);
+			instance_destroy();
+		}
+	}
+	
+	function troopIsDead()
+	{
+		return ds_list_empty(soldiersList);
+	}
+	
+	function onlyLeaderRemains()
+	{
+		return ds_list_size(soldiersList) == 1; // Vérif supplémentaire ? -> vérifier que l'instance centrale de la grille existe
+	}
+	
+	function takeDamage(_soldierId)
+	{
+		ds_list_delete(soldiersList, ds_list_find_index(soldiersList, _soldierId)); // Remove it from the list soldier
+	}
+	
+	function isIdle()
+	{
+		return false; // To override
+	}
+	
+	function isFighting()
+	{
+		return false; // To override
 	}
 }

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Spear",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Spear",
+  "parent":{
+    "name":"Weapons",
+    "path":"folders/Weapons/Weapons.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,16 +1,4 @@
-enum WEAPON_STATE
-{
-	IDLE,
-	LATENCY_TO_FIGHT,
-	FIGHT,
-	LATENCY_TO_IDLE,
-	LOAD,
-	ATTACK,
-	ATTACK_SUCCESS,
-	RELOAD
-}
-
-function Weapon()
+function Spear()
 {
 	// INIT
 	unit = undefined;
@@ -20,7 +8,8 @@ function Weapon()
 	image_yscale = 3;
 	
 	// Attacking
-	attackRange = 250;
+	attackRange = 200;
+	attackDirection = 0;
 	
 	// Idle -> LatencyToFight
 	function idle()
@@ -110,6 +99,11 @@ function Weapon()
 	
 	function alarm2()
 	{
+		// Calculer la direction de l'attaque en fonction de la cible
+		// Uniquement si la cible est toujours vivante au moment de l'attaque
+
+		attackDirection = instance_exists(unit.targetMonster) ? point_direction(x, y, unit.targetMonster.x, unit.targetMonster.y): image_angle + 135;
+		show_debug_message(attackDirection)
 		stateMachineWeapon.setState(WEAPON_STATE.ATTACK);
 		alarm_set(3, 30); // Fin de attack
 	}
@@ -117,52 +111,38 @@ function Weapon()
 	// Attack -> Reload
 	function attack()
 	{
-		pointEnemy();
-		
-		image_index = 1;
+		if (DEBUG) image_index = 0;
 		
 		// Position cible pour l'attaque (vers l'avant, direction de la cible)
 	    var attackOffset = 50; // Distance vers la cible pour l'estoc
-    
-		if (instance_exists(unit.targetMonster))
-		{
-		    // Calculer la direction de l'attaque en fonction de la cible
-		    var attack_direction = point_direction(x, y, unit.targetMonster.x, unit.targetMonster.y);
-    
-		    // Convertir la direction en coordonnées pour déplacer la lance
-		    var offsetX = lengthdir_x(attackOffset, attack_direction);
-		    var offsetY = lengthdir_y(attackOffset, attack_direction);
-    
-		    // Utiliser lerp pour déplacer la lance vers la cible
-		    x = lerp(x, unit.x + offsetX, 0.25);
-		    y = lerp(y, unit.y + offsetY, 0.25);
-		}
 		
+    
+		// Convertir la direction en coordonnées pour déplacer la lance
+		var offsetX = lengthdir_x(attackOffset, attackDirection);
+		var offsetY = lengthdir_y(attackOffset, attackDirection);
+    
+		// Utiliser lerp pour déplacer la lance vers la cible
+		x = lerp(x, unit.x + offsetX, 0.25);
+		y = lerp(y, unit.y + offsetY, 0.25);
+	
 		// If collide monster : damages
 		doDamages();
 	}
 	
 	function attackSuccess()
 	{
-		image_index = 0;
-		pointEnemy();
+		if (DEBUG) image_index = 1;
 		
 		// Position cible pour l'attaque (vers l'avant, direction de la cible)
 	    var attackOffset = 50; // Distance vers la cible pour l'estoc
     
-		if (instance_exists(unit.targetMonster))
-		{
-		    // Calculer la direction de l'attaque en fonction de la cible
-		    var attack_direction = point_direction(x, y, unit.targetMonster.x, unit.targetMonster.y);
+		// Convertir la direction en coordonnées pour déplacer la lance
+		var offsetX = lengthdir_x(attackOffset, attackDirection);
+		var offsetY = lengthdir_y(attackOffset, attackDirection);
     
-		    // Convertir la direction en coordonnées pour déplacer la lance
-		    var offsetX = lengthdir_x(attackOffset, attack_direction);
-		    var offsetY = lengthdir_y(attackOffset, attack_direction);
-    
-		    // Utiliser lerp pour déplacer la lance vers la cible
-		    x = lerp(x, unit.x + offsetX, 0.25);
-		    y = lerp(y, unit.y + offsetY, 0.25);
-		}
+		// Utiliser lerp pour déplacer la lance vers la cible
+		x = lerp(x, unit.x + offsetX, 0.25);
+		y = lerp(y, unit.y + offsetY, 0.25);
 		
 		// Cancel
 		if (unit.isPanicking())
@@ -182,8 +162,7 @@ function Weapon()
 	// Reload -> Fight
 	function reload()
 	{
-		image_index = 0;
-		pointEnemy();
+		if (DEBUG) image_index = 0;
 		
 		// Position initiale de la lance (par rapport à l'unité)
 	    var initialOffsetX = -15;
@@ -220,18 +199,19 @@ function Weapon()
 		reload
 	);
 	
+	
 	// Common multiple states
 	function pointEnemy()
 	{
 		if (not instance_exists(unit.targetMonster)) exit;
 		
 		// Calculer l'angle cible vers le monstre
-	    var target_angle = point_direction(x, y, unit.targetMonster.x, unit.targetMonster.y);
+	    var _targetAngle = point_direction(x, y, unit.targetMonster.x, unit.targetMonster.y);
 		
-		target_angle -= 135
+		_targetAngle -= 135;
     
 	    // Utiliser lerp pour tourner progressivement vers la cible
-	    image_angle = lerp(image_angle, target_angle, 0.1);
+	    image_angle = lerp(image_angle, _targetAngle, 0.1);
 	}
 	
 	function followUnit()
@@ -265,6 +245,8 @@ function Weapon()
 	function draw()
 	{
 		draw_self();
+		
+		if (not DEBUG) exit;
 		
 		draw_set_color(#9999ff);
 		//draw_circle(x, y, attackRange, not (stateMachineWeapon.getState() >= WEAPON_STATE.LOAD));

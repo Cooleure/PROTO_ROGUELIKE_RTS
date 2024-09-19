@@ -8,7 +8,8 @@ enum SOLDIER_STATE
 	IDLE,
 	LATENCY,
 	MOVE,
-	FIGHT
+	FIGHT,
+	PANIC
 }
 
 function Soldier()
@@ -37,13 +38,25 @@ function Soldier()
 	no = undefined;
 	
 	// Weapon
-	weapon = instance_create_layer(x, y, "Weapons", oWeapon);
+	weapon = instance_create_layer(x, y, "Weapons", oSpear);
 	weapon.unit = id;
+	
+	// Panic
+	panicRange = 50;
 	
 	// State Machine
 	function idle()
 	{
-		if (troop.fightDetected)
+		// Detect panic
+		var _panicDetected = collision_circle(x, y, panicRange, oMonster, false, true) != noone;
+		
+		if (_panicDetected)
+		{
+			stateMachineSoldier.setState(SOLDIER_STATE.PANIC);
+		}
+		
+		// Else : detect panic
+		else if (troop.isFighting())
 		{
 			stateMachineSoldier.setState(SOLDIER_STATE.FIGHT);
 		}
@@ -65,7 +78,7 @@ function Soldier()
 		{
 		    // Stopper l'objet quand il atteint la destination
 		    speed = 0;
-    
+
 		    stateMachineSoldier.setState(SOLDIER_STATE.IDLE);
 		    sprite_index = spriteIdle;
 		    image_index = irandom(sprite_get_number(sprite_index));
@@ -89,17 +102,44 @@ function Soldier()
 	
 	function fight()
 	{
-		if (not troop.fightDetected)
+		var _panicDetected = collision_circle(x, y, panicRange, oMonster, false, true) != noone;
+		
+		if (_panicDetected)
+		{
+			stateMachineSoldier.setState(SOLDIER_STATE.PANIC);
+		}
+		
+		else if (troop.isIdle())
 		{
 			stateMachineSoldier.setState(SOLDIER_STATE.IDLE);
 		}
 	}
 	
-	stateMachineSoldier = new StateMachine(SOLDIER_STATE.IDLE,
+	function panic()
+	{
+		var _panicDetected = collision_circle(x, y, panicRange, oMonster, false, true) != noone;
+		
+		if (not _panicDetected) // Back to a normal behiavor
+		{
+			if (troop.isIdle()) // The troop is not fighting
+			{
+				stateMachineSoldier.setState(SOLDIER_STATE.IDLE);
+			}
+			else if (troop.isFighting()) // The troop is fighting
+			{
+				stateMachineSoldier.setState(SOLDIER_STATE.FIGHT);
+			}
+		}
+	}
+	
+	stateMachineSoldier = new StateMachine
+	(
+		SOLDIER_STATE.IDLE,
 		idle,
 		latency,
 		move,
-		fight
+		fight,
+		panic
 	);
 
 	/// EVENTS
@@ -121,7 +161,12 @@ function Soldier()
 	{
 		draw_self();
 		
-		draw_set_color(c_white);
+		if (not DEBUG) exit;
+		
+		draw_set_color(#99ff99);
+		draw_circle(x, y, panicRange, not stateMachineSoldier.isState(SOLDIER_STATE.PANIC));
+		
+		//draw_set_color(c_white);
 		//draw_text(x, y, stateMachineSoldier.getState());
 	}
 	
@@ -135,5 +180,10 @@ function Soldier()
 		
 		stateMachineSoldier.setState(SOLDIER_STATE.LATENCY); // Temps de réponse variable selon les soldats
 		alarm_set(0, irandom_range(3, 10));
+	}
+	
+	function isPanicking()
+	{
+		return stateMachineSoldier.isState(SOLDIER_STATE.PANIC);
 	}
 }

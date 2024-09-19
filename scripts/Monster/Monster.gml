@@ -35,7 +35,10 @@ function Monster()
 	// State Machine
 	function idle()
 	{
-		
+		if (troop.isFighting())
+		{
+			stateMachineSoldier.setState(SOLDIER_STATE.FIGHT);
+		}
 	}
 	
 	function latency()
@@ -76,10 +79,23 @@ function Monster()
 		}
 	}
 	
+	function fight()
+	{
+		if (not troop.isFighting())
+		{
+			stateMachineSoldier.setState(SOLDIER_STATE.IDLE);
+		}
+		else
+		{
+			moveToPoint(targetMonster.x, targetMonster.y);
+		}
+	}
+	
 	stateMachineSoldier = new StateMachine(SOLDIER_STATE.IDLE,
 		idle,
 		latency,
-		move
+		move,
+		fight
 	);
 
 	/// EVENTS
@@ -101,8 +117,10 @@ function Monster()
 	{
 		draw_self();
 		
+		if (not DEBUG) exit;
+		
 		draw_set_color(c_white);
-		//draw_text(x, y, no);
+		draw_text(x, y, stateMachineSoldier.getState());
 	}
 	
 	// Public functions
@@ -115,5 +133,14 @@ function Monster()
 		
 		stateMachineSoldier.setState(SOLDIER_STATE.LATENCY); // Temps de réponse variable selon les soldats
 		alarm_set(0, irandom_range(3, 10));
+	}
+	
+	function takeDamage()
+	{
+		// If it is a leader don't take damages until it's the last soldier
+		if (no == 4 and not troop.onlyLeaderRemains()) return; // autre possibilité de vérif : objet de type "leader"
+
+		troop.takeDamage(id); // The troop is affected by the damages
+		instance_destroy();
 	}
 }

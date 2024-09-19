@@ -1,6 +1,6 @@
 {
   "$GMObject":"",
-  "%Name":"oWeapon",
+  "%Name":"oSpear",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
@@ -13,13 +13,16 @@
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":4,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"oWeapon",
+  "name":"oSpear",
   "overriddenProperties":[],
   "parent":{
     "name":"Weapons",
-    "path":"folders/Weapons.yy",
+    "path":"folders/Weapons/Weapons.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"oWeapon",
+    "path":"objects/oWeapon/oWeapon.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -37,7 +40,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sSpearIdle",
+    "path":"sprites/sSpearIdle/sSpearIdle.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

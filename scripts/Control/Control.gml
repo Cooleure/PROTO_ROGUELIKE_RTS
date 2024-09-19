@@ -3,21 +3,25 @@
 ///////// EVENT CLASS /////////
 ///////////////////////////////
 
+#macro DEBUG false
+#macro Test:DEBUG true
+
+
 function Control()
 {
 	/// INIT
-	show_debug_log(true);
+	show_debug_log(DEBUG);
 	randomize();
 	
-	stateMachineExample = new StateMachine(SM_MODEL_STATE.FIRST_STATE,
-										StateObjectStateFirstState,
-										StateObjectStateSecondState,
-										StateObjectStateThirdState);
-
 	/// EVENTS
 	function step()
 	{
-		script_execute(stateMachineExample.update());
+		if (keyboard_check_pressed(ord("R"))) game_restart();
+		if (keyboard_check_pressed(ord("M")))
+		{
+			instance_destroy(oMonster);
+		}
+
 	}
 	
 	function globalLeftPressed()
